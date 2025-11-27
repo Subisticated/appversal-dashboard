@@ -33,7 +33,7 @@ export default function Dashboard() {
     <StatusSelector />
 
     <div style={{ marginTop: "1.5rem" }}>
-      <TaskList tasks={members.find(m => m.name === currentUser)?.tasks || []} />
+      <TaskList />
     </div>
   </>
 )}

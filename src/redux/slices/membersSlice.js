@@ -19,10 +19,29 @@ const membersSlice = createSlice({
     assignTask(state, action) {
       const { id, task } = action.payload;
       const member = state.find((m) => m.id === id);
-      if (member) member.tasks.push(task);
+      if (member) {
+        member.tasks.push({
+          ...task,
+          progress: 0,
+          completed: false,
+        });
+      }
+    },
+    updateTaskProgress(state, action) {
+      const { id, taskIndex, delta } = action.payload;
+      const member = state.find((m) => m.id === id);
+      if (!member) return;
+
+      const task = member.tasks[taskIndex];
+      if (!task) return;
+
+      const newVal = Math.min(100, Math.max(0, (task.progress || 0) + delta));
+      task.progress = newVal;
+
+      if (newVal === 100) task.completed = true;
     },
   },
 });
 
-export const { updateStatus, assignTask } = membersSlice.actions;
+export const { updateStatus, assignTask, updateTaskProgress } = membersSlice.actions;
 export default membersSlice.reducer;
