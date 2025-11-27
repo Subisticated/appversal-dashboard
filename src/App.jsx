@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/SideBar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
