@@ -1,0 +1,84 @@
+/* Global Layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef1f6; /* soft grey-blue */
+  color: #222;
+}
+
+.page {
+  padding: 2rem 3rem;
+}
+
+/* Header */
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  padding: 8px 14px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+.button:hover {
+  opacity: 0.85;
+}
+
+/* Card Base */
+.card,
+.form-card {
+  background: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+  transition: transform 0.15s ease;
+  margin-bottom: 1rem;
+}
+
+/* Hover Lift */
+.card:hover,
+.form-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Task Form */
+.form-card {
+  width: 350px;
+}
+
+.form-card input,
+.form-card select {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Status Tag Labels */
+.status-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.status-working { background: #4caf50; }
+.status-break { background: #ff9800; }
+.status-offline { background: #9ca3af; }
+.status-meeting { background: #3b82f6; }
