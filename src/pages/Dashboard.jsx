@@ -1,14 +1,31 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import MemberCard from "../components/MemberCard";
 import StatusSummary from "../components/StatusSummary";
 import TaskForm from "../components/TaskForm";
 import StatusSelector from "../components/StatusSelector";
 import TaskList from "../components/TaskList";
+import LeadControls from "../components/LeadControls";
 
 export default function Dashboard() {
   const role = useSelector((state) => state.role.currentRole);
-  const members = useSelector((state) => state.members);
   const currentUser = useSelector((state) => state.role.currentUser);
+  const members = useSelector((state) => state.members);
+
+  const [filter, setFilter] = useState("all");
+  const [sort, setSort] = useState(null);
+
+  let filteredMembers = [...members];
+
+  if (filter !== "all") {
+    filteredMembers = filteredMembers.filter((m) => m.status === filter);
+  }
+
+  if (sort === "asc") {
+    filteredMembers.sort((a, b) => a.tasks.length - b.tasks.length);
+  } else if (sort === "desc") {
+    filteredMembers.sort((a, b) => b.tasks.length - a.tasks.length);
+  }
 
   return (
     <div className="page">
@@ -16,11 +33,16 @@ export default function Dashboard() {
         <>
           <h2>Team Members</h2>
 
+          <LeadControls
+            onFilterChange={setFilter}
+            onSortChange={setSort}
+          />
+
           <TaskForm />
           <StatusSummary />
 
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            {members.map((m) => (
+            {filteredMembers.map((m) => (
               <MemberCard key={m.id} member={m} />
             ))}
           </div>
@@ -28,15 +50,14 @@ export default function Dashboard() {
       )}
 
       {role !== "lead" && (
-  <>
-    <h2>Welcome</h2>
-    <StatusSelector />
-
-    <div style={{ marginTop: "1.5rem" }}>
-      <TaskList />
-    </div>
-  </>
-)}
+        <>
+          <h2>Welcome, {currentUser}</h2>
+          <StatusSelector />
+          <div style={{ marginTop: "1.5rem" }}>
+            <TaskList />
+          </div>
+        </>
+      )}
     </div>
   );
 }
