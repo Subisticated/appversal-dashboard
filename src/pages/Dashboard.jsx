@@ -8,6 +8,7 @@ import TaskList from "../components/TaskList";
 import LeadControls from "../components/LeadControls";
 import UserSwitcher from "../components/UserSwitcher";
 
+
 export default function Dashboard() {
   const role = useSelector((state) => state.role.currentRole);
   const currentUser = useSelector((state) => state.role.currentUser);
@@ -40,7 +41,11 @@ export default function Dashboard() {
             <TaskForm />
           </div>
 
-          <StatusSummary />
+          <div style={{ flex: 1 }}>
+            <h2>Lead View</h2>
+            
+            <StatusSummary />
+          </div>
 
           <h3 style={{ marginTop: "1.5rem" }}>Team Members</h3>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>

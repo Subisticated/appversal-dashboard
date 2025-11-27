@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <header className="header" style={{ background: "#1e293b", color: "white" }}>
-      <h2>Team Dashboard</h2>
+      <h2 style={{ color: "white" }}>Team Dashboard</h2>
 
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span>Logged in: <strong>{currentUser}</strong></span>

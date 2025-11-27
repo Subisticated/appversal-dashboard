@@ -1,15 +1,14 @@
 /* Global Layout */
 body {
   margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  background: #f1f5f9;
-  color: #1e293b;
+  font-family: "Inter", sans-serif;
+  background: #eef2f6;
 }
-
 
 .page {
-  padding: 2rem 3rem;
+  padding: 2rem;
 }
+
 
 /* Header */
 .header {
@@ -50,9 +49,12 @@ body {
 
 /* Hover Lift */
 .card:hover,
-.form-card:hover {
-  transform: translateY(-3px);
+.form-card:hover{
+  transform: translateY(-4px);
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
+
 
 /* Task Form */
 .form-card {
@@ -84,3 +86,48 @@ body {
 .status-break { background: #ff9800; }
 .status-offline { background: #9ca3af; }
 .status-meeting { background: #3b82f6; }
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  color: black;
+}
+
+.status-working {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-break {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-meeting {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.status-offline {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+button.button {
+  background: #4e73df;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button.button:hover {
+  opacity: 0.85;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+}

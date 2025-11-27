@@ -7,41 +7,61 @@ export default function TaskList() {
   const members = useSelector((state) => state.members);
   const user = members.find((m) => m.name === currentUser);
 
-  const activeTasks = user.tasks.filter((t) => !t.completed);
-  const completedTasks = user.tasks.filter((t) => t.completed);
+  const adjust = (i, d) =>
+    dispatch(updateTaskProgress({ id: user.id, taskIndex: i, delta: d }));
 
-  const adjust = (taskIndex, delta) =>
-    dispatch(updateTaskProgress({ id: user.id, taskIndex, delta }));
+  const split = (arr) => ({
+    active: arr.filter((t) => !t.completed),
+    done: arr.filter((t) => t.completed),
+  });
+
+  const { active, done } = split(user.tasks);
 
   return (
-    <div>
+    <div style={{ width: "500px" }}>
       <h3>Your Tasks</h3>
 
-      {activeTasks.length === 0 && <p>No active tasks right now.</p>}
-
-      {activeTasks.map((task, i) => (
-        <div key={i} className="card" style={{ width: "300px" }}>
+      {active.map((task, i) => (
+        <div key={i} className="card">
           <strong>{task.title}</strong>
-          <p>Due: {task.dueDate || "N/A"}</p>
-          <p>Progress: {task.progress}%</p>
-          <button className="button" onClick={() => adjust(i, +10)}>
-            +10%
-          </button>
-          <button
-            className="button"
-            onClick={() => adjust(i, -10)}
-            style={{ marginLeft: "6px", background: "#555" }}
+          <p style={{ fontSize: "14px" }}>Due: {task.dueDate}</p>
+
+          <div
+            style={{
+              height: "8px",
+              width: "100%",
+              background: "#cbd5e1",
+              borderRadius: "6px",
+              margin: "8px 0",
+            }}
           >
-            -10%
-          </button>
+            <div
+              style={{
+                height: "8px",
+                width: `${task.progress}%`,
+                background: "#4e73df",
+                borderRadius: "6px",
+                transition: "0.2s",
+              }}
+            ></div>
+          </div>
+
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button className="button" onClick={() => adjust(i, +10)}>
+              +10%
+            </button>
+            <button className="button" onClick={() => adjust(i, -10)}>
+              -10%
+            </button>
+          </div>
         </div>
       ))}
 
-      {completedTasks.length > 0 && (
+      {done.length > 0 && (
         <>
-          <h3 style={{ marginTop: "2rem" }}>Completed Tasks</h3>
-          {completedTasks.map((task, i) => (
-            <div key={i} className="card" style={{ width: "300px" }}>
+          <h4 style={{ marginTop: "1.5rem" }}>Completed</h4>
+          {done.map((task, i) => (
+            <div key={i} className="card">
               <strong style={{ textDecoration: "line-through" }}>
                 {task.title}
               </strong>
