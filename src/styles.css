@@ -1,10 +1,11 @@
 /* Global Layout */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eef1f6; /* soft grey-blue */
-  color: #222;
+  font-family: "Inter", Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
 }
+
 
 .page {
   padding: 2rem 3rem;
@@ -12,13 +13,14 @@ body {
 
 /* Header */
 .header {
-  background: #ffffff;
-  border-bottom: 1px solid #ddd;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 
 .button {
   padding: 8px 14px;

@@ -32,13 +32,17 @@ export default function Dashboard() {
     <div className="page">
       {role === "lead" && (
         <>
-          <h2>Team Members</h2>
-          <LeadControls
-            onFilterChange={setFilter}
-            onSortChange={setSort}
-          />
-          <TaskForm />
+          <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem" }}>
+            <LeadControls
+              onFilterChange={setFilter}
+              onSortChange={setSort}
+            />
+            <TaskForm />
+          </div>
+
           <StatusSummary />
+
+          <h3 style={{ marginTop: "1.5rem" }}>Team Members</h3>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             {filteredMembers.map((m) => (
               <MemberCard key={m.id} member={m} />
@@ -49,12 +53,12 @@ export default function Dashboard() {
 
       {role !== "lead" && (
         <>
-          <h2>Welcome, {currentUser}</h2>
-          <UserSwitcher />
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ display: "flex", gap: "2rem" }}>
+            <UserSwitcher />
             <StatusSelector />
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+
+          <div style={{ marginTop: "2rem" }}>
             <TaskList />
           </div>
         </>
