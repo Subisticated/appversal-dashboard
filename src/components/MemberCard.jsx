@@ -1,15 +1,13 @@
 export default function MemberCard({ member }) {
   return (
-    <div style={{
-      border: "1px solid #ccc",
-      borderRadius: "6px",
-      padding: "12px",
-      width: "200px",
-      marginBottom: "12px"
-    }}>
-      <h3 style={{ margin: 0 }}>{member.name}</h3>
-      <p>Status: {member.status}</p>
-      <p>Tasks: {member.tasks.length}</p>
+    <div className="card">
+      <h3>{member.name}</h3>
+      <span className={`status-tag status-${member.status.toLowerCase()}`}>
+        {member.status}
+      </span>
+      <p style={{ marginTop: "8px" }}>
+        Tasks: <strong>{member.tasks.length}</strong>
+      </p>
     </div>
   );
 }
