@@ -6,6 +6,7 @@ import TaskForm from "../components/TaskForm";
 import StatusSelector from "../components/StatusSelector";
 import TaskList from "../components/TaskList";
 import LeadControls from "../components/LeadControls";
+import UserSwitcher from "../components/UserSwitcher";
 
 export default function Dashboard() {
   const role = useSelector((state) => state.role.currentRole);
@@ -32,15 +33,12 @@ export default function Dashboard() {
       {role === "lead" && (
         <>
           <h2>Team Members</h2>
-
           <LeadControls
             onFilterChange={setFilter}
             onSortChange={setSort}
           />
-
           <TaskForm />
           <StatusSummary />
-
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             {filteredMembers.map((m) => (
               <MemberCard key={m.id} member={m} />
@@ -52,7 +50,10 @@ export default function Dashboard() {
       {role !== "lead" && (
         <>
           <h2>Welcome, {currentUser}</h2>
-          <StatusSelector />
+          <UserSwitcher />
+          <div style={{ marginTop: "1.5rem" }}>
+            <StatusSelector />
+          </div>
           <div style={{ marginTop: "1.5rem" }}>
             <TaskList />
           </div>

@@ -12,9 +12,13 @@ export default function StatusSummary() {
   );
 
   return (
-    <div style={{ margin: "1rem 0", fontWeight: "bold" }}>
+    <div style={{ display: "flex", gap: "12px", margin: "1rem 0" }}>
       {Object.entries(statusCount).map(([status, count]) => (
-        <span key={status} style={{ marginRight: "1rem" }}>
+        <span
+          key={status}
+          className={`status-tag status-${status.toLowerCase()}`}
+          style={{ fontSize: "12px", padding: "5px 12px" }}
+        >
           {status}: {count}
         </span>
       ))}
